@@ -60,8 +60,8 @@
 
 1. **کلون کردن مخزن**
 ```bash
-git clone <repository-url>
-cd library-management-system
+git clone https://github.com/Amin-Safari/library.git
+cd library 
 ```
 
 2. **ایجاد محیط مجازی**
