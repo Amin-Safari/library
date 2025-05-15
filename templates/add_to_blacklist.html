@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>افزودن عضو به لیست سیاه</h2>
+
+<form method="POST" class="col-md-6">
+    <div class="mb-3">
+        <label for="member_id" class="form-label">انتخاب عضو:</label>
+        <select name="member_id" id="member_id" class="form-control" required>
+            <option value="">انتخاب کنید...</option>
+            {% for member in members %}
+            <option value="{{ member.id }}">{{ member.name }} - {{ member.email }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="reason" class="form-label">دلیل:</label>
+        <textarea name="reason" id="reason" class="form-control" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="end_date" class="form-label">تاریخ پایان (اختیاری):</label>
+        <input type="date" name="end_date" id="end_date" class="form-control">
+        <small class="form-text text-muted">در صورت خالی گذاشتن، عضو به صورت نامحدود در لیست سیاه خواهد ماند.</small>
+    </div>
+    <button type="submit" class="btn btn-danger">افزودن به لیست سیاه</button>
+    <a href="{{ url_for('blacklist.index') }}" class="btn btn-secondary">انصراف</a>
+</form>
+{% endblock %}

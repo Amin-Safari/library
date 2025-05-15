@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>امانت کتاب: {{ book.title }}</h2>
+
+<form method="POST" class="col-md-6">
+    <div class="mb-3">
+        <label for="member_id" class="form-label">انتخاب عضو</label>
+        <select class="form-control" id="member_id" name="member_id" required>
+            <option value="">انتخاب کنید...</option>
+            {% for member in members %}
+            <option value="{{ member.id }}">{{ member.name }} - {{ member.email }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">امانت دادن</button>
+    <a href="/books" class="btn btn-secondary">انصراف</a>
+</form>
+{% endblock %}

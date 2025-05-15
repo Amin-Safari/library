@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">به سیستم مدیریت کتابخانه خوش آمدید</h1>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5>مدیریت کتاب‌ها</h5>
+                        <p>اضافه کردن و جستجوی کتاب‌ها</p>
+                        <a href="/books" class="btn btn-primary">مشاهده کتاب‌ها</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5>مدیریت اعضا</h5>
+                        <p>ثبت نام و مدیریت اعضای کتابخانه</p>
+                        <a href="/members" class="btn btn-primary">مشاهده اعضا</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5>مدیریت امانات</h5>
+                        <p>امانت و بازگردانی کتاب‌ها</p>
+                        <a href="/loans" class="btn btn-primary">مشاهده امانات</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

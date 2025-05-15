@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>تاریخچه امانات و بازگشت‌ها</h2>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="GET">
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="member_id" class="form-label">فیلتر بر اساس عضو:</label>
+                    <select name="member_id" id="member_id" class="form-control">
+                        <option value="">همه اعضا</option>
+                        {% for member in members %}
+                        <option value="{{ member.id }}" {% if selected_member and selected_member|int==member.id
+                            %}selected{% endif %}>
+                            {{ member.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <label for="book_id" class="form-label">فیلتر بر اساس کتاب:</label>
+                    <select name="book_id" id="book_id" class="form-control">
+                        <option value="">همه کتاب‌ها</option>
+                        {% for book in books %}
+                        <option value="{{ book.id }}" {% if selected_book and selected_book|int==book.id %}selected{%
+                            endif %}>
+                            {{ book.title }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary">اعمال فیلتر</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>تاریخ</th>
+                <th>عمل</th>
+                <th>کتاب</th>
+                <th>عضو</th>
+                <th>جزئیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in history %}
+            <tr>
+                <td>{{ record.date.strftime('%Y/%m/%d %H:%M') }}</td>
+                <td>
+                    {% if record.action == 'loan' %}
+                    <span class="badge bg-warning">امانت</span>
+                    {% elif record.action == 'return' %}
+                    <span class="badge bg-success">بازگشت</span>
+                    {% else %}
+                    <span class="badge bg-secondary">{{ record.action }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ record.book.title }}</td>
+                <td>{{ record.member.name }}</td>
+                <td>{{ record.details or '---' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

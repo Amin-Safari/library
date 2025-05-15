@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>امانات فعال</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>کتاب</th>
+                <th>عضو</th>
+                <th>تاریخ امانت</th>
+                <th>تاریخ بازگشت</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan in loans %}
+            <tr>
+                <td>{{ loan.book.title }}</td>
+                <td>{{ loan.member.name }}</td>
+                <td>{{ loan.loan_date.strftime('%Y/%m/%d') }}</td>
+                <td>{{ loan.return_date.strftime('%Y/%m/%d') }}</td>
+                <td>
+                    <a href="/loans/return/{{ loan.id }}" class="btn btn-sm btn-success">بازگردانی</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
